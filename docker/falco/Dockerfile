@@ -4,7 +4,7 @@ LABEL maintainer="cncf-falco-dev@lists.cncf.io"
 
 LABEL usage="docker run -i -t --privileged -v /var/run/docker.sock:/host/var/run/docker.sock -v /dev:/host/dev -v /proc:/host/proc:ro -v /boot:/host/boot:ro -v /lib/modules:/host/lib/modules:ro -v /usr:/host/usr:ro -v /etc:/host/etc --name NAME IMAGE"
 
-ARG TARGETPLATFORM
+ARG BUILDPLATFORM
 ARG FALCO_VERSION=latest
 ARG VERSION_BUCKET=deb
 ENV VERSION_BUCKET=${VERSION_BUCKET}
@@ -43,32 +43,32 @@ RUN apt-get update \
 # prefix https://snapshot.debian.org/archive/debian/20170517T033514Z
 # or so.
 
-RUN curl -L -o cpp-6_6.3.0-18+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/cpp-6_6.3.0-18+deb9u1_$TARGETPLATFORM.deb \
-	&& curl -L -o gcc-6-base_6.3.0-18+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/gcc-6-base_6.3.0-18+deb9u1_$TARGETPLATFORM.deb \
-	&& curl -L -o gcc-6_6.3.0-18+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/gcc-6_6.3.0-18+deb9u1_$TARGETPLATFORM.deb \
-	&& curl -L -o libasan3_6.3.0-18+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libasan3_6.3.0-18+deb9u1_$TARGETPLATFORM.deb \
-	&& curl -L -o libcilkrts5_6.3.0-18+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libcilkrts5_6.3.0-18+deb9u1_$TARGETPLATFORM.deb \
-	&& curl -L -o libgcc-6-dev_6.3.0-18+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libgcc-6-dev_6.3.0-18+deb9u1_$TARGETPLATFORM.deb \
-	&& curl -L -o libubsan0_6.3.0-18+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libubsan0_6.3.0-18+deb9u1_$TARGETPLATFORM.deb \
-	&& curl -L -o libmpfr4_3.1.3-2+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libmpfr4_3.1.3-2+deb9u1_$TARGETPLATFORM.deb \
-	&& curl -L -o libisl15_0.18-1+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libisl15_0.18-1+deb9u1_$TARGETPLATFORM.deb \
-	&& dpkg -i cpp-6_6.3.0-18+deb9u1_$TARGETPLATFORM.deb gcc-6-base_6.3.0-18+deb9u1_$TARGETPLATFORM.deb gcc-6_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libasan3_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libcilkrts5_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libgcc-6-dev_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libubsan0_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libmpfr4_3.1.3-2+deb9u1_$TARGETPLATFORM.deb libisl15_0.18-1+deb9u1_$TARGETPLATFORM.deb \
-	&& rm -f cpp-6_6.3.0-18+deb9u1_$TARGETPLATFORM.deb gcc-6-base_6.3.0-18+deb9u1_$TARGETPLATFORM.deb gcc-6_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libasan3_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libcilkrts5_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libgcc-6-dev_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libubsan0_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libmpfr4_3.1.3-2+deb9u1_$TARGETPLATFORM.deb libisl15_0.18-1+deb9u1_$TARGETPLATFORM.deb
+RUN curl -L -o cpp-6_6.3.0-18+deb9u1_$BUILDPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/cpp-6_6.3.0-18+deb9u1_$BUILDPLATFORM.deb \
+	&& curl -L -o gcc-6-base_6.3.0-18+deb9u1_$BUILDPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/gcc-6-base_6.3.0-18+deb9u1_$BUILDPLATFORM.deb \
+	&& curl -L -o gcc-6_6.3.0-18+deb9u1_$BUILDPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/gcc-6_6.3.0-18+deb9u1_$BUILDPLATFORM.deb \
+	&& curl -L -o libasan3_6.3.0-18+deb9u1_$BUILDPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libasan3_6.3.0-18+deb9u1_$BUILDPLATFORM.deb \
+	&& curl -L -o libcilkrts5_6.3.0-18+deb9u1_$BUILDPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libcilkrts5_6.3.0-18+deb9u1_$BUILDPLATFORM.deb \
+	&& curl -L -o libgcc-6-dev_6.3.0-18+deb9u1_$BUILDPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libgcc-6-dev_6.3.0-18+deb9u1_$BUILDPLATFORM.deb \
+	&& curl -L -o libubsan0_6.3.0-18+deb9u1_$BUILDPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libubsan0_6.3.0-18+deb9u1_$BUILDPLATFORM.deb \
+	&& curl -L -o libmpfr4_3.1.3-2+deb9u1_$BUILDPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libmpfr4_3.1.3-2+deb9u1_$BUILDPLATFORM.deb \
+	&& curl -L -o libisl15_0.18-1+deb9u1_$BUILDPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libisl15_0.18-1+deb9u1_$BUILDPLATFORM.deb \
+	&& dpkg -i cpp-6_6.3.0-18+deb9u1_$BUILDPLATFORM.deb gcc-6-base_6.3.0-18+deb9u1_$BUILDPLATFORM.deb gcc-6_6.3.0-18+deb9u1_$BUILDPLATFORM.deb libasan3_6.3.0-18+deb9u1_$BUILDPLATFORM.deb libcilkrts5_6.3.0-18+deb9u1_$BUILDPLATFORM.deb libgcc-6-dev_6.3.0-18+deb9u1_$BUILDPLATFORM.deb libubsan0_6.3.0-18+deb9u1_$BUILDPLATFORM.deb libmpfr4_3.1.3-2+deb9u1_$BUILDPLATFORM.deb libisl15_0.18-1+deb9u1_$BUILDPLATFORM.deb \
+	&& rm -f cpp-6_6.3.0-18+deb9u1_$BUILDPLATFORM.deb gcc-6-base_6.3.0-18+deb9u1_$BUILDPLATFORM.deb gcc-6_6.3.0-18+deb9u1_$BUILDPLATFORM.deb libasan3_6.3.0-18+deb9u1_$BUILDPLATFORM.deb libcilkrts5_6.3.0-18+deb9u1_$BUILDPLATFORM.deb libgcc-6-dev_6.3.0-18+deb9u1_$BUILDPLATFORM.deb libubsan0_6.3.0-18+deb9u1_$BUILDPLATFORM.deb libmpfr4_3.1.3-2+deb9u1_$BUILDPLATFORM.deb libisl15_0.18-1+deb9u1_$BUILDPLATFORM.deb
 
 # gcc 5 is no longer included in debian stable, but we need it to
 # build centos kernels, which are 3.x based and explicitly want a gcc
 # version 3, 4, or 5 compiler. So grab copies we've saved from debian
 # snapshots with the prefix https://snapshot.debian.org/archive/debian/20190122T000000Z.
 
-RUN curl -L -o cpp-5_5.5.0-12+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/cpp-5_5.5.0-12+deb9u1_$TARGETPLATFORM.deb \
-	&& curl -L -o gcc-5-base_5.5.0-12+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/gcc-5-base_5.5.0-12+deb9u1_$TARGETPLATFORM.deb \
-	&& curl -L -o gcc-5_5.5.0-12+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/gcc-5_5.5.0-12+deb9u1_$TARGETPLATFORM.deb \
-	&& curl -L -o libasan2_5.5.0-12+deb9u1_$TARGETPLATFORM.deb	https://ftp.debian.org/debian/pool/main/g/gcc-6/libasan2_5.5.0-12+deb9u1_$TARGETPLATFORM.deb \
-	&& curl -L -o libgcc-5-dev_5.5.0-12+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libgcc-5-dev_5.5.0-12+deb9u1_$TARGETPLATFORM.deb \
-	&& curl -L -o libisl15_0.18-4+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libisl15_0.18-4+deb9u1_$TARGETPLATFORM.deb \
-	&& curl -L -o libmpx0_5.5.0-12+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libmpx0_5.5.0-12+deb9u1_$TARGETPLATFORM.deb \
-	&& dpkg -i cpp-5_5.5.0-12+deb9u1_$TARGETPLATFORM.deb gcc-5-base_5.5.0-12+deb9u1_$TARGETPLATFORM.deb gcc-5_5.5.0-12+deb9u1_$TARGETPLATFORM.deb libasan2_5.5.0-12+deb9u1_$TARGETPLATFORM.deb libgcc-5-dev_5.5.0-12+deb9u1_$TARGETPLATFORM.deb libisl15_0.18-4+deb9u1_$TARGETPLATFORM.deb libmpx0_5.5.0-12+deb9u1_$TARGETPLATFORM.deb \
-	&& rm -f cpp-5_5.5.0-12+deb9u1_$TARGETPLATFORM.deb gcc-5-base_5.5.0-12+deb9u1_$TARGETPLATFORM.deb gcc-5_5.5.0-12+deb9u1_$TARGETPLATFORM.deb libasan2_5.5.0-12+deb9u1_$TARGETPLATFORM.deb libgcc-5-dev_5.5.0-12+deb9u1_$TARGETPLATFORM.deb libisl15_0.18-4+deb9u1_$TARGETPLATFORM.deb libmpx0_5.5.0-12+deb9u1_$TARGETPLATFORM.deb
+RUN curl -L -o cpp-5_5.5.0-12+deb9u1_$BUILDPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/cpp-5_5.5.0-12+deb9u1_$BUILDPLATFORM.deb \
+	&& curl -L -o gcc-5-base_5.5.0-12+deb9u1_$BUILDPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/gcc-5-base_5.5.0-12+deb9u1_$BUILDPLATFORM.deb \
+	&& curl -L -o gcc-5_5.5.0-12+deb9u1_$BUILDPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/gcc-5_5.5.0-12+deb9u1_$BUILDPLATFORM.deb \
+	&& curl -L -o libasan2_5.5.0-12+deb9u1_$BUILDPLATFORM.deb	https://ftp.debian.org/debian/pool/main/g/gcc-6/libasan2_5.5.0-12+deb9u1_$BUILDPLATFORM.deb \
+	&& curl -L -o libgcc-5-dev_5.5.0-12+deb9u1_$BUILDPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libgcc-5-dev_5.5.0-12+deb9u1_$BUILDPLATFORM.deb \
+	&& curl -L -o libisl15_0.18-4+deb9u1_$BUILDPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libisl15_0.18-4+deb9u1_$BUILDPLATFORM.deb \
+	&& curl -L -o libmpx0_5.5.0-12+deb9u1_$BUILDPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libmpx0_5.5.0-12+deb9u1_$BUILDPLATFORM.deb \
+	&& dpkg -i cpp-5_5.5.0-12+deb9u1_$BUILDPLATFORM.deb gcc-5-base_5.5.0-12+deb9u1_$BUILDPLATFORM.deb gcc-5_5.5.0-12+deb9u1_$BUILDPLATFORM.deb libasan2_5.5.0-12+deb9u1_$BUILDPLATFORM.deb libgcc-5-dev_5.5.0-12+deb9u1_$BUILDPLATFORM.deb libisl15_0.18-4+deb9u1_$BUILDPLATFORM.deb libmpx0_5.5.0-12+deb9u1_$BUILDPLATFORM.deb \
+	&& rm -f cpp-5_5.5.0-12+deb9u1_$BUILDPLATFORM.deb gcc-5-base_5.5.0-12+deb9u1_$BUILDPLATFORM.deb gcc-5_5.5.0-12+deb9u1_$BUILDPLATFORM.deb libasan2_5.5.0-12+deb9u1_$BUILDPLATFORM.deb libgcc-5-dev_5.5.0-12+deb9u1_$BUILDPLATFORM.deb libisl15_0.18-4+deb9u1_$BUILDPLATFORM.deb libmpx0_5.5.0-12+deb9u1_$BUILDPLATFORM.deb
 
 # Since our base Debian image ships with GCC 7 which breaks older kernels, revert the
 # default to gcc-5.
@@ -100,10 +100,10 @@ RUN rm -df /lib/modules \
 # debian:stable head contains binutils 2.31, which generates
 # binaries that are incompatible with kernels < 4.16. So manually
 # forcibly install binutils 2.30-22 instead.
-RUN curl -L -o binutils_2.30-22+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/binutils_2.30-22+deb9u1_$TARGETPLATFORM.deb \
-	&& curl -L -o libbinutils_2.30-22+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libbinutils_2.30-22+deb9u1_$TARGETPLATFORM.deb \
-	&& curl -L -o binutils-x86-64-linux-gnu_2.30-22+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/binutils-x86-64-linux-gnu_2.30-22+deb9u1_$TARGETPLATFORM.deb \
-	&& curl -L -o binutils-common_2.30-22+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/binutils-common_2.30-22+deb9u1_$TARGETPLATFORM.deb \
+RUN curl -L -o binutils_2.30-22+deb9u1_$BUILDPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/binutils_2.30-22+deb9u1_$BUILDPLATFORM.deb \
+	&& curl -L -o libbinutils_2.30-22+deb9u1_$BUILDPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libbinutils_2.30-22+deb9u1_$BUILDPLATFORM.deb \
+	&& curl -L -o binutils-x86-64-linux-gnu_2.30-22+deb9u1_$BUILDPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/binutils-x86-64-linux-gnu_2.30-22+deb9u1_$BUILDPLATFORM.deb \
+	&& curl -L -o binutils-common_2.30-22+deb9u1_$BUILDPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/binutils-common_2.30-22+deb9u1_$BUILDPLATFORM.deb \
 	&& dpkg -i *binutils*.deb \
 	&& rm -f *binutils*.deb
 
