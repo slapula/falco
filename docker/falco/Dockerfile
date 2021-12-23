@@ -47,32 +47,17 @@ RUN curl -L -o cpp-6_6.3.0-18+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/
 	&& curl -L -o gcc-6-base_6.3.0-18+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/gcc-6-base_6.3.0-18+deb9u1_$TARGETPLATFORM.deb \
 	&& curl -L -o gcc-6_6.3.0-18+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/gcc-6_6.3.0-18+deb9u1_$TARGETPLATFORM.deb \
 	&& curl -L -o libasan3_6.3.0-18+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libasan3_6.3.0-18+deb9u1_$TARGETPLATFORM.deb \
-	&& curl -L -o libcilkrts5_6.3.0-18+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libcilkrts5_6.3.0-18+deb9u1_$TARGETPLATFORM.deb \
+	# && curl -L -o libcilkrts5_6.3.0-18+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libcilkrts5_6.3.0-18+deb9u1_$TARGETPLATFORM.deb \
 	&& curl -L -o libgcc-6-dev_6.3.0-18+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libgcc-6-dev_6.3.0-18+deb9u1_$TARGETPLATFORM.deb \
 	&& curl -L -o libubsan0_6.3.0-18+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libubsan0_6.3.0-18+deb9u1_$TARGETPLATFORM.deb \
-	&& curl -L -o libmpfr4_3.1.3-2+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libmpfr4_3.1.3-2+deb9u1_$TARGETPLATFORM.deb \
-	&& curl -L -o libisl15_0.18-1+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libisl15_0.18-1+deb9u1_$TARGETPLATFORM.deb \
-	&& dpkg -i cpp-6_6.3.0-18+deb9u1_$TARGETPLATFORM.deb gcc-6-base_6.3.0-18+deb9u1_$TARGETPLATFORM.deb gcc-6_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libasan3_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libcilkrts5_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libgcc-6-dev_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libubsan0_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libmpfr4_3.1.3-2+deb9u1_$TARGETPLATFORM.deb libisl15_0.18-1+deb9u1_$TARGETPLATFORM.deb \
-	&& rm -f cpp-6_6.3.0-18+deb9u1_$TARGETPLATFORM.deb gcc-6-base_6.3.0-18+deb9u1_$TARGETPLATFORM.deb gcc-6_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libasan3_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libcilkrts5_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libgcc-6-dev_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libubsan0_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libmpfr4_3.1.3-2+deb9u1_$TARGETPLATFORM.deb libisl15_0.18-1+deb9u1_$TARGETPLATFORM.deb
-
-# gcc 5 is no longer included in debian stable, but we need it to
-# build centos kernels, which are 3.x based and explicitly want a gcc
-# version 3, 4, or 5 compiler. So grab copies we've saved from debian
-# snapshots with the prefix https://snapshot.debian.org/archive/debian/20190122T000000Z.
-
-RUN curl -L -o cpp-5_5.5.0-12+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/cpp-5_5.5.0-12+deb9u1_$TARGETPLATFORM.deb \
-	&& curl -L -o gcc-5-base_5.5.0-12+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/gcc-5-base_5.5.0-12+deb9u1_$TARGETPLATFORM.deb \
-	&& curl -L -o gcc-5_5.5.0-12+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/gcc-5_5.5.0-12+deb9u1_$TARGETPLATFORM.deb \
-	&& curl -L -o libasan2_5.5.0-12+deb9u1_$TARGETPLATFORM.deb	https://ftp.debian.org/debian/pool/main/g/gcc-6/libasan2_5.5.0-12+deb9u1_$TARGETPLATFORM.deb \
-	&& curl -L -o libgcc-5-dev_5.5.0-12+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libgcc-5-dev_5.5.0-12+deb9u1_$TARGETPLATFORM.deb \
-	&& curl -L -o libisl15_0.18-4+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libisl15_0.18-4+deb9u1_$TARGETPLATFORM.deb \
-	&& curl -L -o libmpx0_5.5.0-12+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libmpx0_5.5.0-12+deb9u1_$TARGETPLATFORM.deb \
-	&& dpkg -i cpp-5_5.5.0-12+deb9u1_$TARGETPLATFORM.deb gcc-5-base_5.5.0-12+deb9u1_$TARGETPLATFORM.deb gcc-5_5.5.0-12+deb9u1_$TARGETPLATFORM.deb libasan2_5.5.0-12+deb9u1_$TARGETPLATFORM.deb libgcc-5-dev_5.5.0-12+deb9u1_$TARGETPLATFORM.deb libisl15_0.18-4+deb9u1_$TARGETPLATFORM.deb libmpx0_5.5.0-12+deb9u1_$TARGETPLATFORM.deb \
-	&& rm -f cpp-5_5.5.0-12+deb9u1_$TARGETPLATFORM.deb gcc-5-base_5.5.0-12+deb9u1_$TARGETPLATFORM.deb gcc-5_5.5.0-12+deb9u1_$TARGETPLATFORM.deb libasan2_5.5.0-12+deb9u1_$TARGETPLATFORM.deb libgcc-5-dev_5.5.0-12+deb9u1_$TARGETPLATFORM.deb libisl15_0.18-4+deb9u1_$TARGETPLATFORM.deb libmpx0_5.5.0-12+deb9u1_$TARGETPLATFORM.deb
+	&& curl -L -o libmpfr4_3.1.5-1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/m/mpfr4/libmpfr4_3.1.5-1_$TARGETPLATFORM.deb \
+	&& curl -L -o libisl15_0.18-1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/i/isl/libisl15_0.18-1_$TARGETPLATFORM.deb \
+	&& dpkg -i cpp-6_6.3.0-18+deb9u1_$TARGETPLATFORM.deb gcc-6-base_6.3.0-18+deb9u1_$TARGETPLATFORM.deb gcc-6_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libasan3_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libcilkrts5_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libgcc-6-dev_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libubsan0_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libmpfr4_3.1.5-1_$TARGETPLATFORM.deb libisl15_0.18-1_$TARGETPLATFORM.deb \
+	&& rm -f cpp-6_6.3.0-18+deb9u1_$TARGETPLATFORM.deb gcc-6-base_6.3.0-18+deb9u1_$TARGETPLATFORM.deb gcc-6_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libasan3_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libcilkrts5_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libgcc-6-dev_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libubsan0_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libmpfr4_3.1.5-1_$TARGETPLATFORM.deb libisl15_0.18-1_$TARGETPLATFORM.deb
 
 # Since our base Debian image ships with GCC 7 which breaks older kernels, revert the
 # default to gcc-5.
-RUN rm -rf /usr/bin/gcc && ln -s /usr/bin/gcc-5 /usr/bin/gcc
+RUN rm -rf /usr/bin/gcc && ln -s /usr/bin/gcc-6 /usr/bin/gcc
 
 RUN rm -rf /usr/bin/clang \
 	&& rm -rf /usr/bin/llc \
