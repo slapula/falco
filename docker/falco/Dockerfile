@@ -52,8 +52,8 @@ RUN curl -L -o cpp-6_6.3.0-18+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/
 	&& curl -L -o libubsan0_6.3.0-18+deb9u1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/g/gcc-6/libubsan0_6.3.0-18+deb9u1_$TARGETPLATFORM.deb \
 	&& curl -L -o libmpfr4_3.1.5-1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/m/mpfr4/libmpfr4_3.1.5-1_$TARGETPLATFORM.deb \
 	&& curl -L -o libisl15_0.18-1_$TARGETPLATFORM.deb https://ftp.debian.org/debian/pool/main/i/isl/libisl15_0.18-1_$TARGETPLATFORM.deb \
-	&& dpkg -i cpp-6_6.3.0-18+deb9u1_$TARGETPLATFORM.deb gcc-6-base_6.3.0-18+deb9u1_$TARGETPLATFORM.deb gcc-6_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libasan3_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libcilkrts5_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libgcc-6-dev_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libubsan0_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libmpfr4_3.1.5-1_$TARGETPLATFORM.deb libisl15_0.18-1_$TARGETPLATFORM.deb \
-	&& rm -f cpp-6_6.3.0-18+deb9u1_$TARGETPLATFORM.deb gcc-6-base_6.3.0-18+deb9u1_$TARGETPLATFORM.deb gcc-6_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libasan3_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libcilkrts5_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libgcc-6-dev_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libubsan0_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libmpfr4_3.1.5-1_$TARGETPLATFORM.deb libisl15_0.18-1_$TARGETPLATFORM.deb
+	&& dpkg -i cpp-6_6.3.0-18+deb9u1_$TARGETPLATFORM.deb gcc-6-base_6.3.0-18+deb9u1_$TARGETPLATFORM.deb gcc-6_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libasan3_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libgcc-6-dev_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libubsan0_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libmpfr4_3.1.5-1_$TARGETPLATFORM.deb libisl15_0.18-1_$TARGETPLATFORM.deb  \
+	&& rm -f cpp-6_6.3.0-18+deb9u1_$TARGETPLATFORM.deb gcc-6-base_6.3.0-18+deb9u1_$TARGETPLATFORM.deb gcc-6_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libasan3_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libgcc-6-dev_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libubsan0_6.3.0-18+deb9u1_$TARGETPLATFORM.deb libmpfr4_3.1.5-1_$TARGETPLATFORM.deb libisl15_0.18-1_$TARGETPLATFORM.deb
 
 # Since our base Debian image ships with GCC 7 which breaks older kernels, revert the
 # default to gcc-5.
